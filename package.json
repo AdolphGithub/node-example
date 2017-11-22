@@ -1,0 +1,14 @@
+{
+  "name": "node-example",
+  "version": "1.0.0",
+  "description": "node实战例子",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "1138027478@qq.com",
+  "license": "MIT"
+}
