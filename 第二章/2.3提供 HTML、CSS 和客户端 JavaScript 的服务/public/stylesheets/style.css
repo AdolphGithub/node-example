@@ -1,0 +1,27 @@
+body {
+    padding:50px;
+    font-size:14px;
+}
+
+a {
+    color:#00B7BF;
+}
+
+.room {
+    width:800px;
+    margin:0 auto;
+}
+
+#room-list{
+    background-color:#ddd;
+    margin-bottom:1em;
+}
+
+#messages {
+    width:690px;
+    height:300px;
+    overflow: auto;
+    background-color: #eee;
+    margin-bottom: 1em;
+    margin-right:10px;
+}

@@ -24,7 +24,7 @@ function send404(response){
  * @param fileContents 文件内容
  */
 function sendFile(response,filePath,fileContents){
-    response.writeHead(200,{'Content-Type':mime.lookup(path.basename(filePath))});
+    response.writeHead(200,{'Content-Type':mime.getType(path.basename(filePath))});
     response.end(fileContents);
 }
 /**
