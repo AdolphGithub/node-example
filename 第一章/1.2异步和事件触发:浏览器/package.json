@@ -1,0 +1,20 @@
+{
+  "name": "node-example",
+  "version": "1.0.0",
+  "description": "node实战例子",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node index.js"
+  },
+  "keywords": [
+    "node",
+    "node实战"
+  ],
+  "author": "1138027478@qq.com",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "jsdom": "^11.4.0"
+  }
+}
