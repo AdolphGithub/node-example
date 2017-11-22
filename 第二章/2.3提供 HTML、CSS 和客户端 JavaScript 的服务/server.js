@@ -6,6 +6,8 @@ const path = require('path');
 
 const mime = require('mime');
 
+var chat = require('./lib/chat');
+
 var cache = {};
 /**
  * 404响应
@@ -70,6 +72,9 @@ var server = http.createServer(function(request,response){
     }
     serveStatic(response,cache,filePath);
 });
+
+chat.listen(server);
+
 // 监听3000 端口
 server.listen(3000,function(){
     console.dir('Server listening on Port 3000');
