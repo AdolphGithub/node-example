@@ -4,10 +4,12 @@
   "description": "node实战例子",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node index.js"
   },
   "keywords": [
-    "node"
+    "node",
+    "node实战"
   ],
   "author": "1138027478@qq.com",
   "license": "MIT"
