@@ -6,7 +6,7 @@ const path = require('path');
 
 const mime = require('mime');
 
-var chat = require('./lib/chat');
+var chat = require('./lib/chat_server');
 
 var cache = {};
 /**

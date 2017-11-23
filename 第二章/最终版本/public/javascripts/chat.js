@@ -4,7 +4,7 @@ var Chat = function(socket){
 
 Chat.prototype.sendMessage = function(room,text){
     var message = {
-        'room':romm,
+        'room':room,
         'text':text
     };
     this.socket.emit('message',message);
@@ -13,7 +13,7 @@ Chat.prototype.sendMessage = function(room,text){
 Chat.prototype.changeRoom = function(room){
     this.socket.emit('join',{
         'newRoom':room
-    })
+    });
 }
 
 Chat.prototype.processCommand = function(command){
