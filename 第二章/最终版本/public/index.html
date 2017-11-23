@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="room">
+        <div id="room"></div>
         <div id="room-list"></div>
         <div id="messages"></div>
         <form id="myform">
@@ -35,27 +36,28 @@
         var socket = io.connect();
         $(document).ready(function(){
             var chatApp = new Chat(socket);
+            // 监听昵称改变
             socket.on('nameResult',function(result){
                 var message;
 
                 if(result.success){
-                    message = 'You are now known as ' + result.name + '.';
+                    message = '登录名:' + result.name + '.';
                 }else{
                     message = result.message;
                 }
                 $('#messages').append(divSystemContentElement(message));
             });
-
+            // 接受加入房间的消息
             socket.on('joinResult',function(result){
                 $('#room').text(result.room);
-                $('#messages').append(divSystemContentElement('Room changed.'));
+                $('#messages').append(divSystemContentElement('登录房间'));
             });
-
+            // 接受消息
             socket.on('message',function(message){
                 var newElement = $('<div></div>').text(message.text);
                 $('#messages').append(newElement);
             });
-
+            // 发送消息
             $('#myform').submit(function(){
                 processUserInput(chatApp,socket);
                 return false;
@@ -64,12 +66,12 @@
             setInterval(function(){
                 socket.emit('rooms');
             },1000);
-            
+            // 接收房间的消息
             socket.on('rooms',function(rooms){
                 $('#room-list').empty();
 
                 for(var room in rooms){
-                    room = room.substring(1,room.length);
+                    room = room.substring(-1,room.length);
 
                     if(room != ''){
                         $('#room-list').append(divEscapedContentElement(room));

@@ -14,6 +14,7 @@
   "author": "1138027478@qq.com",
   "license": "MIT",
   "dependencies": {
+    "debug": "^3.1.0",
     "mime": "^2.0.3",
     "socket.io": "^2.0.4"
   }

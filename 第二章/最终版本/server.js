@@ -1,5 +1,6 @@
+var debug = require('debug')('http');
 const http = require('http');
-
+debug('booting %o','My app');
 const fs   = require('fs');
 
 const path = require('path');

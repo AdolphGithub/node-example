@@ -13,8 +13,8 @@ var currentRoom = {};
 exports.listen = function(server){
     // 监听server
     io = socketio.listen(server);
-    // 设置日志等级
-    io.set('log level',1);
+    // 设置日志等级 在1.0之前是这样子的  1.0过后被移除了
+    // io.set('log level',1);
     // 链接进来时,需要分配用户名,还要分配用户进入房间
     io.sockets.on('connection',function(client){
         // 分配用户名.
@@ -63,7 +63,7 @@ exports.listen = function(server){
         currentRoom[socket.id] = room_name;
         socket.emit('joinResult',{'room':room_name});
         socket.broadcast.to(room_name).emit('message',{
-            'text':nickNames[socket.id] + ' has join ' + room_name + '.'
+            'text':nickNames[socket.id] + ' 加入 ' + room_name + '.'
         });
         // 这里是老版本的写法.
         // var usersInRoom = io.sockets.clients(room_name);
