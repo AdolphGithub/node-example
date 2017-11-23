@@ -9,6 +9,8 @@ const fs   = require('fs');
 // 缓存
 var cache = {};
 
+var chat = require('./lib/chat_server');
+
 /**
  * 构建404响应
  * @param {*} response 
@@ -68,6 +70,9 @@ var server = http.createServer(function(request,response){
     }
     callServerStatic(response,file_name,cache);
 });
+
+// 监听服务器.用于处理socket服务.
+chat.listen(server);
 
 // 监听端口.
 server.listen(3000,function(){
