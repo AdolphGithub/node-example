@@ -33,6 +33,8 @@ exports.listen = function(server){
             // socket.emit('rooms',io.sockets.manager.rooms);
             client.emit('rooms',io.of('/').adapter.rooms);
         });
+
+        handleClientDisconnection(client);
     });
 
     /**

@@ -14,13 +14,23 @@ exports.listen = function(server){
 
     io = socket.listen(server);
 
-    socket.on('connection',function(client){
+    io.sockets.on('connection',function(client){
         // 分布昵称
-        guestRoomNumber = handlerAcceptNickName(client,nickNames,nameUsed,guestNumber);
+        guestNumber = handlerAcceptNickName(client,nickNames,nameUsed,guestNumber);
         // 加入房间
         joinRoom(client,'Guest');
+        // 处理用户消息
+        handleMessageBroadcasting(client);
         // 修改昵称
         handlerChangeNickName(client,nickNames,nameUsed);
+        // 设置房间
+        handlerRoomJoining(client);
+        // 获取服务器的所有房间
+        client.on('rooms',function(){
+            client.emit('rooms',io.of('/').adapter.rooms);
+        });
+        // 监听关闭事件.
+        handlerDisconnection(client);
     });
 
     /**
@@ -58,10 +68,10 @@ exports.listen = function(server){
         socket.emit('joinRoom',{'room':room});
         // 查询所有的socket并且发布消息
         socket.broadcast.to(room).emit('message',{
-            'text':nickNames[socket.io] + '加入房间,房间号为:' + room
+            'text':nickNames[socket.id] + '加入房间,房间号为:' + room
         });
         // 开始获取改房间下的所有用户 老版本:io.sockets.clients(room);
-        var users = socket.of('/').in(room).clients;
+        var users = io.of('/').in(room).clients;
         if(users.length > 1){
             // 获取所有用户的昵称,一起发布出去.
             var usersInRoomSummary = '用户:' + nickNames[socket.io];
@@ -113,6 +123,42 @@ exports.listen = function(server){
                     'name':nickname
                 });
             }
+        });
+    }
+
+    /**
+     * 设置房间
+     * @param {*} socket 
+     */
+    function handlerRoomJoining(socket){
+        // 加入
+        socket.on('join',function(room){
+            socket.leave(currentRoom[socket.id]);
+            joinRoom(socket,room.room);
+        });
+    }
+
+    /**
+     * 客户端断开链接
+     * @param {*} socket 
+     */
+    function handlerDisconnection(socket){
+        socket.on('disconnect',function(){
+            var prevName = nickNames[socket.id];
+            delete nameUsed[nameUsed.indexOf(prevName)];
+            delete nickNames[socket.id];
+        });
+    }
+
+    /**
+     * 处理用户消息
+     * @param {*} socket 
+     */
+    function handleMessageBroadcasting(socket){
+        socket.on('message',function(message){
+            socket.broadcast.to(message.room).emit('message',{
+                text:nickNames[socket.id] + ':' + message.text
+            });
         });
     }
 }
