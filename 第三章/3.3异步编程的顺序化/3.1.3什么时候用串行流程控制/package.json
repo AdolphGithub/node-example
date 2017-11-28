@@ -1,0 +1,17 @@
+{
+  "name": "3.1.3",
+  "version": "1.0.0",
+  "description": "串行流程控制",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "串行控制"
+  ],
+  "author": "1138027478@qq.com",
+  "license": "MIT",
+  "dependencies": {
+    "nimble": "0.0.2"
+  }
+}
