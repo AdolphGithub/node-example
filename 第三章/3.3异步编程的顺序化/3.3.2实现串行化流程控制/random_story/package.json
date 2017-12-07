@@ -1,0 +1,11 @@
+{
+  "name": "random_story",
+  "version": "1.0.0",
+  "description": "学习日记",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "1138027478@qq.com",
+  "license": "MIT"
+}
