@@ -12,5 +12,8 @@
     "node实战"
   ],
   "author": "1138027478@qq.com",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "formidable": "^1.1.1"
+  }
 }
