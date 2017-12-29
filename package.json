@@ -14,6 +14,7 @@
   "author": "1138027478@qq.com",
   "license": "MIT",
   "dependencies": {
+    "connect": "^3.6.5",
     "formidable": "^1.1.1"
   }
 }
