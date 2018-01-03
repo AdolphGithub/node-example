@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "basic-auth": "^2.0.0",
+    "connect": "^3.6.5"
+  }
+}
