@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "connect": "^3.6.5",
+    "vhost": "^3.0.2"
+  }
+}
